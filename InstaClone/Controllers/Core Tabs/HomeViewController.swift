@@ -6,14 +6,27 @@
 //
 
 import UIKit
-
+import Firebase
 class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Check Auth status
+        
+        if let user = Auth.auth().currentUser  {
+            print(user.email!)
+        } else {
+            // not logged in, redirect to login page
+             performSegue(withIdentifier: "HomeToLogin", sender: self)
+        }
+        
+    }
 
 }
 
